@@ -21,4 +21,49 @@ class Weapon
             weight = w;
             cost = c;
         }
+        
+        public Weapon(){
+            weaponName = null;
+            damage = -1;
+            range = -1;
+            weight = -1;
+            cost = -1;
+        }
+
+    public String getID(){
+        return (this.weaponName == null ) ? null : this.weaponName + this.range + this.damage  + this.weight + this.cost;
+    }
+    
+    public boolean compareTo(Object obj){ 
+        if(obj == null) return false;
+        if (obj.getClass() == this.getClass()){ 
+            Weapon other = (Weapon)obj; //Cast
+            if(other.getID() == null || this.getID() == null)
+                return this.getID() == other.getID(); 
+            return this.getID().compareTo(other.getID()) == 0; 
+        }
+        if (obj.getClass() == "".getClass()){ 
+            if (this.getID() == null) return false; 
+            return this.getID().compareTo((String)obj) == 0; 
+        }
+        return false;
+    }
+
+    @Override
+    public String toString(){
+        return (this.weaponName == null ) ? null : 
+        "Name: " + this.weaponName + 
+        " || Range: " + this.range + 
+        " || Damage: " + this.damage + 
+        " || Weight: " + this.weight + 
+        " || Cost: " + this.cost;
+    }
+
+
+
+
+
+
+
+
     }
