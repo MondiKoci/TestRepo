@@ -33,7 +33,7 @@ public static double getDouble(Scanner sc,String message){
 }
         
     
-public static void addWeapons(ArrayManager h,Scanner sc)
+public static void addWeapons(Shop h,Scanner sc)
 {
     System.out.println("***********WELCOME TO THE WEAPON ADDING MENU*********");
     String weaponName; int weaponRange; int weaponDamage; double weaponWeight; double weaponCost;
@@ -56,14 +56,14 @@ public static void addWeapons(ArrayManager h,Scanner sc)
 
 
 
-public static void showRoomMenu(ArrayManager ht,Player p){
+public static void showRoomMenu(Shop ht,Player p){
     System.out.println("WELCOME TO THE SHOWROOM!!!!");
     ht.printTable();
     System.out.println("You have "+p.money+" money.");
     System.out.println("Please select a weapon to buy('end' to quit):");
 }
         
-public static void showRoom(ArrayManager ht, Player p,Scanner sc)
+public static void showRoom(Shop ht, Player p,Scanner sc)
 {
     String choice;
     showRoomMenu(ht,p);
@@ -98,7 +98,7 @@ public static void showRoom(ArrayManager ht, Player p,Scanner sc)
             System.out.println("Please enter Player name:");
             pname=sc.next();
             Player pl= new Player(pname,45);
-            ArrayManager ht= new ArrayManager(101);
+            Shop ht= new Shop(101);
             addWeapons(ht,sc);
             showRoom(ht, pl,sc);
             pl.printCharacter();
