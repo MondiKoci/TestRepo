@@ -33,7 +33,7 @@ public static double getDouble(Scanner sc,String message){
 }
         
     
-public static void addWeapons(ArrayManager h, Scanner sc)
+public static void addWeapons(Shop h, Scanner sc)
 {
     System.out.println("***********WELCOME TO THE WEAPON ADDING MENU*********");
     String weaponName; int weaponRange; int weaponDamage; double weaponWeight; double weaponCost;
