@@ -36,12 +36,8 @@ public class WeaponShop {
                 quantity = getInteger(sc, "Please enter the quantity in stock:");
                 ShopManager.updateInventory(location, quantity);
                 System.out.println("Inventory updated.");
-                System.out.println("Enter 'Y' to continue adding weapons ir 'N' to exit");
-                String choice = sc.next();
-                if(choice.compareTo("Y") == 0){
-                    addWeapon(sc);
-                }
-                break;
+                System.out.println("Enter a new weapon name or 'end' to exit");
+                weaponName = sc.next();
             }else{
                 weaponRange = getInteger(sc, "Please enter the Range of the Weapon (0-10):");
                 weaponDamage = getInteger(sc, "Please enter the Damage of the Weapon:");
@@ -54,8 +50,7 @@ public class WeaponShop {
                 System.out.print("");
                 System.out.println("Enter a new weapon name or 'end' to exit");
                 weaponName = sc.next();
-            }
-            
+            } 
         }  
     }
 
