@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 public class WeaponShop {
     static Shop ShopManager;
+    static Player player;
     static int counter = 0;
     
 /**
@@ -56,19 +57,33 @@ public class WeaponShop {
         addWeapon(sc, counter);
     }
 
+
+    //Anchor Logic
     public static void deleteItem(){}
-    public static void buyItem(){}
+    public static void buyItem(Scanner sc){
+        System.out.print(ShopManager.itemList());
+        promptEnterKey();
+       
+    }
     public static void viewBackpack(){
         BackPack b = new BackPack();
         b.add(new Weapon("Axe", 2,2,3,4));
         b.add(new Weapon("Sword", 2,2,5,4));
         b.add(new Weapon("Crossbow", 6,2,3,4));
         b.add(new Weapon("Knife", 2,2,3,7));
-        System.out.print(b);
+        System.out.print(b.itemList());
         promptEnterKey();
 
     }
     public static void viewPlayer(){}
+
+
+    public static void REMOVEME(){
+        ShopManager.put(new Weapon("Axe", 2,2,3,4), 5);
+        ShopManager.put(new Weapon("Sword", 2,2,5,4), 5);
+        ShopManager.put(new Weapon("Crossbow", 6,2,3,4), 5);
+        ShopManager.put(new Weapon("Knife", 2,2,3,7), 5);
+    }
 
 
 
@@ -79,10 +94,9 @@ public class WeaponShop {
     public static int getInteger(Scanner sc, String message, int max){
         System.out.print(message);
         int choice = 0;
-
-           boolean x = true;
+        boolean x = true;
            while(x){
-               String t = sc.nextLine();
+                String t = sc.nextLine();
                try{
                    choice = Integer.parseInt(t);
                    if(choice < 0 || choice > max){
@@ -98,6 +112,14 @@ public class WeaponShop {
                }
             }
         return choice;
+        }
+
+
+    public static int getInteger2(Scanner sc, String message, int max){
+        System.out.print(message);
+        String t = sc.nextLine();
+        
+        return 1;
         }
 
     public static int getInteger(Scanner sc,String message){
@@ -133,16 +155,26 @@ public class WeaponShop {
         return s;
     }
 
+    public static String buyMenu(){
+        return 
+        "\n" + Pretty.UI(64, "~ Buy From Shop ~") +
+        "\n1: View Shop Showroom\n" +
+        "2: Buy Item\n" +
+        "3: Go Back\n";
+        
+    }
+
     public static void runGame(Scanner sc){
         String menu = mainMenu();
-        int choice = getInteger(sc, menu, 6);
+        int choice = getInteger(sc, menu, 7);//!CHange to 6
 
         while(choice != 6){
             if(choice == 1){addWeapon(sc, counter);}
             if(choice == 2){deleteItem();}
-            if(choice == 3){buyItem();}
+            if(choice == 3){buyItem(sc);}
             if(choice == 4){viewBackpack();}
             if(choice == 5){viewPlayer();}
+            if(choice == 7){REMOVEME();}//!REMOVE
 
             choice = getInteger(sc, menu, 6);
         }
@@ -155,10 +187,10 @@ public class WeaponShop {
         String pname;
         System.out.println("Please enter Player name:");
         pname=sc.next();
-        Player player = new Player(pname,45);
+        player = new Player(pname,45);
         Shop shop = new Shop();
         runGame(sc);
-        player.printCharacter();
+        //player.printCharacter();
 
     }
     
