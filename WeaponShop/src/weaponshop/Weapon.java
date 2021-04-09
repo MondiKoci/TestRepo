@@ -49,9 +49,45 @@ class Weapon
         return false;
     }
 
+//(int fill, String str, int pos, String border, boolean newline)
+    public String PrettyPrint(int outerSize, String outerBorder, int innerSize, String innerBorder) {
+       return 
+       Pretty.UI(outerSize,
+       Pretty.UI(innerSize, innerBorder + " " + this.weaponName + " " + innerBorder, 3, innerBorder, false), 
+       3, outerBorder, true) + 
+       
+        Pretty.UI(outerSize,
+            Pretty.UI(innerSize,
+                Pretty.fill((innerBorder + " " + this.weaponName + " " + innerBorder).length(), innerBorder),
+            3, innerBorder, false),
+       3, outerBorder, true) + 
+
+       Pretty.UI(outerSize,
+       Pretty.UI(innerSize, "", 3, innerBorder, false),
+       3, outerBorder, true) + 
+
+       Pretty.UI(outerSize,
+       Pretty.UI(innerSize, "Range: " + this.range, 3, innerBorder, false),
+       3, outerBorder, true) + 
+
+       Pretty.UI(outerSize,
+       Pretty.UI(innerSize, "Damage: " + this.damage, 3, innerBorder, false),
+       3, outerBorder, true) + 
+
+       Pretty.UI(outerSize,
+       Pretty.UI(innerSize, "Weight: " + this.weight, 3, innerBorder, false),
+       3, outerBorder, true) + 
+       
+       Pretty.UI(outerSize,
+       Pretty.UI(innerSize, "Cost: " + this.cost, 3, innerBorder, false),
+       3, outerBorder, true);
+    }
+
+
+
     @Override
     public String toString(){
-        return (this.weaponName == null ) ? null : 
+        return (this.weaponName == null ) ? "" : 
         "Name: " + this.weaponName + 
         " || Range: " + this.range + 
         " || Damage: " + this.damage + 

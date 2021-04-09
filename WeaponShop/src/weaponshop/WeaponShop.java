@@ -58,7 +58,16 @@ public class WeaponShop {
 
     public static void deleteItem(){}
     public static void buyItem(){}
-    public static void viewBackpack(){}
+    public static void viewBackpack(){
+        BackPack b = new BackPack();
+        b.add(new Weapon("Axe", 2,2,3,4));
+        b.add(new Weapon("Sword", 2,2,5,4));
+        b.add(new Weapon("Crossbow", 6,2,3,4));
+        b.add(new Weapon("Knife", 2,2,3,7));
+        System.out.print(b);
+        promptEnterKey();
+
+    }
     public static void viewPlayer(){}
 
     //============== VALIDATE USER INPUT ==================

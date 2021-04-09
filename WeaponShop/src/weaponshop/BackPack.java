@@ -71,13 +71,21 @@ public class BackPack {
             return true;
         }
        
-       
-        public void printTable(){
-            System.out.println("Hash Table Contents");
-            for (int x=0;x<maxSize;x++){
-                System.out.println(x+"] "+table[x]);
+        @Override
+        public String toString(){
+            String output = Pretty.fill(64, "-") + "\n" + Pretty.UI(64, "Backpack's Contents: ", 3, "|", true) +  Pretty.UI(64, "", 3, "|", true);
+            for (int i=0;  i< maxSize; i++){
+                if(table[i] != null){
+                    output += table[i].PrettyPrint(64, "|", 32, "*");
+                }
             }
-            System.out.println("");
+
+            return output + 
+            Pretty.UI(64, "", 3, "|", true) +
+            Pretty.UI(64, "Backpack Total Items: " + this.numItems + "  ", 2, "|", true) +
+            Pretty.UI(64, "Backpack Total Weight: " + this.weight + "  ", 2, "|", true) +
+            Pretty.fill(64, "-") + "\n";
+
         }
     }
 

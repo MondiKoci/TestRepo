@@ -8,7 +8,7 @@ package weaponshop;
 class Player
     {
         public String name;
-        public Weapon[] backpack;
+        public BackPack backpack;
         public int numItems;
         public double money;
 
@@ -17,13 +17,14 @@ class Player
             name = n;
             money = m;
             numItems = 0;
-            backpack = new Weapon[10];
+            backpack = new BackPack();
         }
 
         public void buy(Weapon w)
         {
+            backpack.add(w);
             System.out.println(w.weaponName+" bought...");
-            backpack[numItems] = w;
+            
             numItems++;
             System.out.println(numItems);
         }
@@ -48,7 +49,7 @@ class Player
              System.out.println(" "+name+", you own "+numItems+" Weapons:");
             for (int x = 0; x < numItems; x++)
             {
-                 System.out.println(" "+backpack[x].weaponName);
+                // System.out.println(" "+backpack[x].weaponName);
             }
             System.out.println();
         }
