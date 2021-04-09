@@ -57,7 +57,10 @@ public class WeaponShop {
         quantity = getInteger(sc, "Please enter the quantity in stock:");
         ShopManager.put(w, quantity);
         counter++;
-        addWeapon(sc, counter);
+        System.out.println("Enter 'Y' to enter another weapon or 'N' to exit");
+        String choice = sc.next();
+        if(choice.compareTo("Y") == 0)addWeapon(sc, counter);
+        else{runGame(sc);}
     }
 
     // Anchor Logic
@@ -75,8 +78,6 @@ public class WeaponShop {
             if(choice == 2){}
             choice = getInteger(sc, buyMenu(), 3);
         }
-        
-
     }
 
     public static void viewBackpack() {
@@ -167,8 +168,7 @@ public class WeaponShop {
     public static void runGame(Scanner sc) {
         String menu = mainMenu();
         sc.nextLine();
-        int choice = getInteger(sc, menu, 7);//!CHange to 6
-
+        int choice = getInteger(sc, menu, 6);//!CHange to 6
         while(choice != 6){
             if(choice == 1){addWeapon(sc, counter);}
             if(choice == 2){deleteItem();}
@@ -188,7 +188,6 @@ public class WeaponShop {
         System.out.println("Please enter Player name:");
         pname = sc.next();
         player = new Player(pname, 45);
-        Shop shop = new Shop();
         runGame(sc);
         // player.printCharacter();
 
