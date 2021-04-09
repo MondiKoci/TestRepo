@@ -56,13 +56,13 @@ public class WeaponShop {
 
     // Anchor Logic
     public static void deleteItem(Scanner sc) {
-        String itemName;
+       
         System.out.println(Pretty.fill(64, "*"));
         System.out.println(ShopManager.itemList());
         System.out.println(Pretty.fill(64, "*"));
         
         System.out.print("Enter the NAME of the item you want to delete ('end' to exit): ");
-        itemName = sc.next();
+        String itemName  = sc.next();
         
         while(itemName.compareTo("end") != 0){
             if(ShopManager.delete(itemName)){
@@ -94,7 +94,8 @@ public class WeaponShop {
     }
     
     public static void purchaseWeapon(Scanner sc) {
-        String input = getValidShopWeapon(sc, purchaseMenu());
+        String input = getValidShopWeapon(purchaseMenu());
+        if(input == null) return;
         
 
 
@@ -151,14 +152,16 @@ public class WeaponShop {
         return sc.nextDouble();
     }
 
-    public static String getValidShopWeapon(Scanner sc, String message){
-        return getValidShopWeapon(sc,  message, "Please enter the name of a Item You want to purchase (or 'end' to go back):");
+    public static String getValidShopWeapon(String message){
+        Scanner sc = new Scanner(System.in);
+        return getValidShopWeapon(sc, message, "Please enter the name of a Item You want to purchase (or 'end' to go back):");
     }
 
     public static String getValidShopWeapon(Scanner sc, String message, String errorMsg){
         System.out.print(message);
         System.out.print(errorMsg + "\n");
         String name = sc.nextLine();
+        if(name.compareTo("end") == 0) { return null; }
         int result = ShopManager.search(name);
         if(result == -1) return getValidShopWeapon(sc, message, "Item \"" + name +"\" Not found in shop please try again");
         return name;
@@ -213,7 +216,7 @@ public class WeaponShop {
 
 
     public static void runGame(Scanner sc) {
-        REMOVEME();//!Remove when submission
+       // REMOVEME();//!Remove when submission
         String menu = mainMenu();
         sc.nextLine();
         int choice = getInteger(sc, menu, 6);//!CHange to 6
