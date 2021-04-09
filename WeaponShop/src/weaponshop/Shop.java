@@ -92,4 +92,46 @@ class Shop {
                 System.out.println("Name: " +table[x].item.weaponName+"   Damage:"+table[x].item.damage+"    Cost:"+table[x].item.cost+"     Quantity in stock:"+table[x].numberInStock);
         }
     }
+
+    @Override
+    public String toString(){
+        String output = Pretty.fill(64, "-") + "\n" + Pretty.UI(64, "Shop Inventory: ", 3, "%", true) +  Pretty.UI(64, "", 3, "%", true);
+        for (int i=0;  i< maxItems; i++){
+            if(table[i] != null){
+                output +=
+                Pretty.UI(64, Pretty.fill(32, "-"), 3, "%", true) +
+                table[i].item.PrettyPrint(64, "%", 32, ":", "-") +
+                Pretty.UI(64, Pretty.UI(32, "In Stock: " +table[i].numberInStock, 3, ":", false), 3, "%", true) +
+                Pretty.UI(64, Pretty.fill(32, "-"), 3, "%", true) +
+                Pretty.UI(64, "", 3, "%", true);
+            }
+        }
+        return output + 
+        Pretty.UI(64, "", 3, "%", true) +
+        Pretty.fill(64, "-") + "\n";
+
+    }
+
+
+    public String itemList(){
+        String output = Pretty.UI(64, Pretty.fill(45, "-"), 3, "%", true);
+        for (int i=0;  i< maxItems; i++){
+            if(table[i] != null){
+                output +=
+                Pretty.UI(64, 
+                    Pretty.UI(15," " +  table[i].item.weaponName, 1, "|", false) +
+                    Pretty.UI(15,"$"+ table[i].item.cost, 3, "", false) +
+                    Pretty.UI(15,"Stock: "+ table[i].numberInStock + " ", 2, "|", false), 
+                3, "%", true);
+            
+            }
+        }
+        return output + 
+        Pretty.UI(64, Pretty.fill(45, "-"), 3, "%", true);
+    }
+
+    
+
+
+    
 }

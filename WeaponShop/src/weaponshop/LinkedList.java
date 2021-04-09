@@ -1,7 +1,7 @@
 package weaponshop;
 
 public class LinkedList {
-     private WeaponNode head;
+    private WeaponNode head;
 
     public LinkedList(){
         head = null;
@@ -25,6 +25,8 @@ public class LinkedList {
             scan = scan.next;
         return scan;
     }
+
+    
 
 
     public WeaponNode delete(Object ID){
@@ -88,17 +90,25 @@ public class LinkedList {
         return output;
     }
 
-    /*
-    @Override
-    public String toString(){
-        String s= "";
+
+
+
+    
+
+    public String listPrint(int outerSize, String outerBorder, int innerSize, String innerBorder){
+        String output= "";
         WeaponNode curr = head;
         while(curr != null){
-            s += curr.data.PrettyPrint(32, "*") + "\n";
-            curr=curr.next;
+            output +=
+            Pretty.UI(outerSize, 
+                Pretty.UI(innerSize/2," " +  curr.data.weaponName, 1, "|", false) +
+                Pretty.UI(innerSize/2, curr.data.weight + "lbs ", 2, "|", false), 
+            3, outerBorder, true);
+            curr = curr.next;
         }
-        return s;
+        return output;
+        
     }
-    */
+    
     
 }

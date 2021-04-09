@@ -49,8 +49,14 @@ class Weapon
         return false;
     }
 
+
+    public String PrettyPrint(int outerSize, String outerBorder, int innerSize, String innerBorder){
+        return PrettyPrint(outerSize, outerBorder, innerSize, innerBorder, innerBorder);
+    }
+
+
 //(int fill, String str, int pos, String border, boolean newline)
-    public String PrettyPrint(int outerSize, String outerBorder, int innerSize, String innerBorder) {
+    public String PrettyPrint(int outerSize, String outerBorder, int innerSize, String innerBorder, String underline) {
        return 
        Pretty.UI(outerSize,
        Pretty.UI(innerSize, innerBorder + " " + this.weaponName + " " + innerBorder, 3, innerBorder, false), 
@@ -58,7 +64,7 @@ class Weapon
        
         Pretty.UI(outerSize,
             Pretty.UI(innerSize,
-                Pretty.fill((innerBorder + " " + this.weaponName + " " + innerBorder).length(), innerBorder),
+                Pretty.fill((innerBorder + " " + this.weaponName + " " + innerBorder).length(), underline),
             3, innerBorder, false),
        3, outerBorder, true) + 
 

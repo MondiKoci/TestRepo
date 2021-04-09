@@ -9,11 +9,12 @@ public class BackPack {
         private LinkedList[] table;
         public double weight;
         private int numItems;
+        private boolean virtualSuccess;
         int maxSize = 30;
         double maxWeight = 90;
     
     
-        public  BackPack(){
+        public BackPack(){
             table = new LinkedList[maxSize];
             numItems = 0;
             weight = 0;
@@ -28,19 +29,27 @@ public class BackPack {
             
         }
 
-        public boolean hasRoom(double inputWeight){
-            return (numItems < maxSize && maxWeight >= (this.weight + inputWeight ));
+      
+        private boolean canAdd(double inputWeight){
+            return (hasSize() && hasWeight(inputWeight));
         }
+
+
+        public boolean hasSize(){return numItems < maxSize; }
+        public boolean hasWeight(double inputWeight){ return maxWeight >= (this.weight + inputWeight); }
+
+        
     
     
         public boolean add(Weapon wep){
-            if (!this.hasRoom(wep.weight)) return false;
+            if (!this.canAdd(wep.weight)) return false;
             int loc = this.hashFunction(wep.getID());
             
             if(this.table[loc] == null)
                 this.table[loc] = new LinkedList();
             
             this.table[loc].addFront(wep);
+            this.virtualSuccess = false;
             numItems++;
             weight += wep.weight;
             return true;
@@ -82,11 +91,25 @@ public class BackPack {
 
             return output + 
             Pretty.UI(64, "", 3, "|", true) +
-            Pretty.UI(64, "Backpack Total Items: " + this.numItems + "  ", 2, "|", true) +
-            Pretty.UI(64, "Backpack Total Weight: " + this.weight + "  ", 2, "|", true) +
+            Pretty.UI(64, "Backpack Total Items: " + this.numItems + " / " + this.maxSize + " ", 2, "|", true) +
+            Pretty.UI(64, "Backpack Total Weight: " + this.weight + " / " + this.maxWeight + " ", 2, "|", true) +
             Pretty.fill(64, "-") + "\n";
 
         }
+
+        public String itemList(){
+            String output = Pretty.UI(64, Pretty.fill(34, "-"), 3, "%", true);
+            for (int i=0;  i< maxSize; i++){
+                if(table[i] != null){
+                    output += table[i].listPrint(64, "%", 34, "|");
+                }
+            }
+            return output + 
+            Pretty.UI(64, Pretty.fill(34, "-"), 3, "%", true);
+        }
+
+        
+
     }
 
 
