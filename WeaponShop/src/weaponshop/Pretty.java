@@ -13,6 +13,7 @@ public class Pretty {
             {
                 spaceStr += " ";
             }
+
             output += border;
             switch (pos)
             {
@@ -28,8 +29,11 @@ public class Pretty {
                     output += spaceStr + str + spaceStr;
                     break;
             }
+            
+           // output += output.length();
+            output += output.length() < fill + border.length() ? " " : "";
             output += border;
-            output += output.length() < fill ? " " : "";
+
     
             if(newline == true)
             {
@@ -57,5 +61,18 @@ public class Pretty {
             boolean newline = true;
             return UI(fill, str, pos, border, newline);
         }
+
+        public static String fill(int fill, String str) 
+        {
+            String output = "";
+            for (int i = 0; i < fill; i++)
+            {
+                output += str;
+            }
+            return output;
+        }
+
+
+
 }
     

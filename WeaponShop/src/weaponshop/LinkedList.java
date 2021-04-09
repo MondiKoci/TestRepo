@@ -60,21 +60,45 @@ public class LinkedList {
         
 
     }
+//(int fill, String str, int pos, String border, boolean newline)
+    public String PrettyPrint(int outerSize, String outerBorder, int innerSize, String innerBorder){
+        String output= "";
+        WeaponNode curr = head;
+        while(curr != null){
+            
+            output +=
 
+            Pretty.UI(outerSize, 
+                Pretty.fill(innerSize, innerBorder),
+            3, outerBorder, true)
+            +
+            curr.data.PrettyPrint(outerSize, outerBorder, innerSize, innerBorder)
+            +
+            Pretty.UI(outerSize, 
+                Pretty.fill(innerSize, innerBorder),
+            3, outerBorder, true);
 
+          
 
+           // output += curr.data.PrettyPrint(innerSize, innerBorder) + "\n";
+            //output += Pretty.fill(innerSize, innerBorder) + "\n";
+
+            curr=curr.next;
+        }
+        return output;
+    }
+
+    /*
     @Override
     public String toString(){
         String s= "";
         WeaponNode curr = head;
         while(curr != null){
-         
-            
-            
-            s += (curr.next == null) ? " (" +curr.data + ")" : " (" +curr.data + "),";
+            s += curr.data.PrettyPrint(32, "*") + "\n";
             curr=curr.next;
         }
-        return s + " ]";
+        return s;
     }
+    */
     
 }

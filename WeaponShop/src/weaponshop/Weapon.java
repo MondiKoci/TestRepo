@@ -50,13 +50,37 @@ class Weapon
     }
 
 //(int fill, String str, int pos, String border, boolean newline)
-    public String PrettyPrint(String border){
+    public String PrettyPrint(int outerSize, String outerBorder, int innerSize, String innerBorder) {
        return 
-       Pretty.UI(64, "Name: " + this.weaponName, 3, border, true) + 
-       Pretty.UI(64, "Range: " + this.range, 3, border, true)  + 
-       Pretty.UI(64, "Damage: " + this.damage, 3, border, true)  + 
-       Pretty.UI(64, "Weight: " + this.weight, 3, border, true)  + 
-       Pretty.UI(64, "Cost: " + this.cost, 3, border, true);
+       Pretty.UI(outerSize,
+       Pretty.UI(innerSize, innerBorder + " " + this.weaponName + " " + innerBorder, 3, innerBorder, false), 
+       3, outerBorder, true) + 
+       
+        Pretty.UI(outerSize,
+            Pretty.UI(innerSize,
+                Pretty.fill((innerBorder + " " + this.weaponName + " " + innerBorder).length(), innerBorder),
+            3, innerBorder, false),
+       3, outerBorder, true) + 
+
+       Pretty.UI(outerSize,
+       Pretty.UI(innerSize, "", 3, innerBorder, false),
+       3, outerBorder, true) + 
+
+       Pretty.UI(outerSize,
+       Pretty.UI(innerSize, "Range: " + this.range, 3, innerBorder, false),
+       3, outerBorder, true) + 
+
+       Pretty.UI(outerSize,
+       Pretty.UI(innerSize, "Damage: " + this.damage, 3, innerBorder, false),
+       3, outerBorder, true) + 
+
+       Pretty.UI(outerSize,
+       Pretty.UI(innerSize, "Weight: " + this.weight, 3, innerBorder, false),
+       3, outerBorder, true) + 
+       
+       Pretty.UI(outerSize,
+       Pretty.UI(innerSize, "Cost: " + this.cost, 3, innerBorder, false),
+       3, outerBorder, true);
     }
 
 

@@ -73,11 +73,19 @@ public class BackPack {
        
         @Override
         public String toString(){
-            String output = "";
+            String output = Pretty.fill(64, "-") + "\n" + Pretty.UI(64, "Backpack's Contents: ", 3, "|", true) +  Pretty.UI(64, "", 3, "|", true);
             for (int i=0;  i< maxSize; i++){
-                output += table[i] + "\n";
+                if(table[i] != null){
+                    output += table[i].PrettyPrint(64, "|", 32, "*");
+                }
             }
-            return output;
+
+            return output + 
+            Pretty.UI(64, "", 3, "|", true) +
+            Pretty.UI(64, "Backpack Total Items: " + this.numItems + "  ", 2, "|", true) +
+            Pretty.UI(64, "Backpack Total Weight: " + this.weight + "  ", 2, "|", true) +
+            Pretty.fill(64, "-") + "\n";
+
         }
     }
 
