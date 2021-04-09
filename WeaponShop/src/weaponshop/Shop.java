@@ -136,7 +136,7 @@ class Shop {
                 Pretty.UI(64, Pretty.fill(45, "-"), 3, "%", true);
 
         for (int i=0;  i< maxItems; i++){
-            if(table[i] != null){
+            if(table[i] != null && table[i].item != null){
                 output +=
                 Pretty.UI(64, 
                     Pretty.UI(15," " +  table[i].item.weaponName, 1, "|", false) +

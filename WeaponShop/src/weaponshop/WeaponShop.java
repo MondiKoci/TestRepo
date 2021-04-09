@@ -22,7 +22,8 @@ public class WeaponShop {
         scanner.nextLine();
     }
 
-    public static void addItem(Scanner sc) {
+    public static void addItem() {
+        Scanner sc = new Scanner(System.in);
         String weaponName; int weaponRange;int weaponDamage;double weaponWeight;double weaponCost;
         int quantity;
         System.out.println("============= ADD WEAPONS TO THE SHOP =============");
@@ -55,7 +56,8 @@ public class WeaponShop {
     }
 
     // Anchor Logic
-    public static void deleteItem(Scanner sc) {
+    public static void deleteItem() {
+        Scanner sc = new Scanner(System.in);
         String itemName;
         System.out.println(Pretty.fill(64, "*"));
         System.out.println(ShopManager.itemList());
@@ -207,18 +209,17 @@ public class WeaponShop {
 
 
     public static void runGame(Scanner sc) {
-        REMOVEME();//!Remove when submission
+        REMOVEME();
         String menu = mainMenu();
         sc.nextLine();
         int choice = getInteger(sc, menu, 6);//!CHange to 6
         while(choice != 6){
-            if(choice == 1){addItem(sc);}
-            if(choice == 2){deleteItem(sc);}
+            if(choice == 1){addItem();}
+            if(choice == 2){deleteItem();}
             if(choice == 3){buyItem(sc);}
             if(choice == 4){viewBackpack();}
             if(choice == 5){viewPlayer();}
            
-
             choice = getInteger(sc, menu, 6);
         }
     }
