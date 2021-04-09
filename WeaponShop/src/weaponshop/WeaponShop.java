@@ -1,6 +1,11 @@
 package weaponshop;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class WeaponShop {
     
@@ -9,140 +14,111 @@ public class WeaponShop {
  * @authors Max Grossman / Mondi Koci
  */
 
+    public static  void promptEnterKey(){
+        System.out.println("Press \"ENTER\" to go back...");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
+    }
+
+    public static void addItems(){
+        System.out.println("HELLO");
+
+        promptEnterKey();
+    }
+    public static void deleteItem(){}
+    public static void buyItem(){}
+    public static void viewBackpack(){}
+    public static void viewPlayer(){}
 
 
 
-public static int getInteger(Scanner sc,String message){
-    System.out.print(message);
-    while (!sc.hasNextInt()) 
-    {
-        sc.nextLine(); //clear the invalid input ...
+
+
+    //============== VALIDATE USER INPUT ==================
+    //Get integer input
+    public static int getInteger(Scanner sc, String message, int max){
         System.out.print(message);
-    }
-    return sc.nextInt();
-}
+        int choice = 0;
 
-public static double getDouble(Scanner sc,String message){
-    System.out.print(message);
-    while (!sc.hasNextDouble()) 
-    {
-        sc.nextLine(); //clear the invalid input ...
+           boolean x = true;
+           while(x){
+               String t = sc.nextLine();
+               try{
+                   choice = Integer.parseInt(t);
+                   if(choice < 0 || choice > max){
+                    System.out.print(message);
+                    System.out.println(choice + "Invalid selection.");
+                    x = true;
+                   }else{
+                      x = false;
+                   }
+               }catch(NumberFormatException f){
+                System.out.print(message);
+                System.out.println("Please select a choice from the menu above: ");
+               }
+            }
+        return choice;
+        }
+
+    public static int getInteger(Scanner sc,String message){
         System.out.print(message);
-    }
-    return sc.nextDouble();
-}
-        
-    
-public static void addWeapons(Shop h, Scanner sc)
-{
-    System.out.println("***********WELCOME TO THE WEAPON ADDING MENU*********");
-    String weaponName; int weaponRange; int weaponDamage; double weaponWeight; double weaponCost;
-    int quantity;
-    System.out.print("Please enter the NAME of the Weapon ('end' to quit):");
-    weaponName=sc.next();
-    while (weaponName.compareTo("end") != 0)
-    {
-        weaponRange= getInteger(sc,"Please enter the Range of the Weapon (0-10):"); 
-        weaponDamage=getInteger(sc,"Please enter the Damage of the Weapon:"); 
-        weaponWeight= getDouble(sc,"Please enter the Weight of the Weapon (in pounds):");
-        weaponCost=getDouble(sc,"Please enter the Cost of the Weapon:");
-        Weapon w = new Weapon(weaponName, weaponRange, weaponDamage, weaponWeight, weaponCost);
-        quantity=getInteger(sc,"Please enter the quantity in stock:"); 
-        h.put(w,quantity);
-        System.out.print("Please enter the NAME of another Weapon ('end' to quit):");
-        weaponName = sc.next();
-    }
-}
-
-
-
-public static void showRoomMenu(Shop ht,Player p){
-    System.out.println("WELCOME TO THE SHOWROOM!!!!");
-    ht.printTable();
-    System.out.println("You have "+p.money+" money.");
-    System.out.println("Please select a weapon to buy('end' to quit):");
-}
-        
-public static void showRoom(Shop ht, Player p,Scanner sc)
-{
-    String choice;
-    showRoomMenu(ht,p);
-    choice=sc.next();
-    while (choice.compareTo("end") != 0 && !p.inventoryFull())
-    {
-        ShopItem si = ht.get(choice);
-        if (si != null)
+        while (!sc.hasNextInt()) 
         {
-
-                p.buy(si.item);
-                p.withdraw(si.item.cost);
-                si.numberInStock--;
-
+            sc.nextLine(); //clear the invalid input ...
+            System.out.print(message);
         }
-        else
-        {
-            System.out.println(" ** "+choice+" not found!! **" );
-        }
-        showRoomMenu(ht,p);
-        choice = sc.next();
+        return sc.nextInt();
     }
-    System.out.println("");
-}
 
+    public static double getDouble(Scanner sc,String message){
+        System.out.print(message);
+        while (!sc.hasNextDouble()) 
+        {
+            sc.nextLine(); //clear the invalid input ...
+            System.out.print(message);
+        }
+        return sc.nextDouble();
+    }
+    //=================STRING MENUES======================
 
+    //Main Menu
+    public static String mainMenu(){
+        String s = "====WELCOME TO THE WORLD OF PEACECRAFT====\n";
+        s += "1: Add Items to the shop \n";
+        s += "2: Delete Items from the shop \n";
+        s += "3: Buy from the shop \n";
+        s += "4: View backpack \n";
+        s += "5: View Player\n";
+        s += "6: exit\n";
+        return s;
+    }
+
+    public static void runGame(Scanner sc){
+        String menu = mainMenu();
+        int choice = getInteger(sc, menu, 6);
+
+        while(choice != 6){
+            if(choice == 1){addItems();}
+            if(choice == 2){deleteItem();}
+            if(choice == 3){buyItem();}
+            if(choice == 4){viewBackpack();}
+            if(choice == 5){viewPlayer();}
+
+            choice = getInteger(sc, menu, 6);
+        }
+    }
 
 
     public static void main(String[] args) {
-        
-        BackPack b = new BackPack();
-        
-        Weapon w1 = new Weapon("drde1", 5, 4, 9, 9); 
-       
-        Weapon w2 = new Weapon("l3uw", 3, 1, 1, 4);
-
-        Weapon w3 = new Weapon("Bta", 6, 2, 4, 4);
-
-        Weapon w4 = new Weapon("gfdf", 9, 6, 1, 4);
-
-        System.out.println(b.hashFunction(w1.getID()));
-        System.out.println(b.hashFunction(w2.getID()));
-        System.out.println(b.hashFunction(w3.getID()));
-
-
-       
-       
-
-        System.out.println(b.add(w1));
-        System.out.println(b.add(w2));
-        System.out.println(b.add(w3));
-        System.out.println(b.add(w4));
-       // b.printTable();
-
-        System.out.println(b.delete("l3uw", 3, 1, 1, 4));
-        //b.printTable();
-
-        System.out.println(b.retrieve("drde1", 5, 4, 9, 9));
-        System.out.println(b.retrieve("l3uw", 3, 1, 1, 4));
-        System.out.println(b.retrieve("Bta", 6, 2, 4, 4));
-        System.out.println(b.retrieve("gfdf", 9, 6, 1, 4));
-        
-
-
-
-
-
-
-         /*
         Scanner sc = new Scanner(System.in);
-            String pname;
-            System.out.println("Please enter Player name:");
-            pname=sc.next();
-            Player pl= new Player(pname,45);
-            Shop ht= new Shop(101);
-            addWeapons(ht,sc);
-            showRoom(ht, pl,sc);
-            pl.printCharacter();
-        */
+        String pname;
+        System.out.println("Please enter Player name:");
+        pname=sc.next();
+        Player player = new Player(pname,45);
+        Shop shop = new Shop();
+        runGame(sc);
+        player.printCharacter();
+
     }
     
 }

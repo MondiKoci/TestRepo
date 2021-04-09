@@ -6,7 +6,10 @@ package weaponshop;
  */
 public class ShopItem {
     Weapon item;
-    int numberInStock;
+    public int numberInStock;
+    
+    //Empty object to be used as a placeholder for deleted items
+    public ShopItem(){}
     
     public ShopItem(Weapon w, int nInStock){
         item=w;

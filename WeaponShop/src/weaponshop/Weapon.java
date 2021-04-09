@@ -70,12 +70,4 @@ class Weapon
         " || Weight: " + this.weight + 
         " || Cost: " + this.cost;
     }
-
-
-
-
-
-
-
-
-    }
+}
