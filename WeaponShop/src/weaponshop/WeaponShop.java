@@ -116,7 +116,7 @@ public static void showRoom(Shop ht, Player p,Scanner sc)
         System.out.println(b.add(w2));
         System.out.println(b.add(w3));
         System.out.println(b.add(w4));
-        b.printTable();
+       // b.printTable();
 
         System.out.println(b.delete("l3uw", 3, 1, 1, 4));
         //b.printTable();

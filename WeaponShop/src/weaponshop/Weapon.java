@@ -49,9 +49,21 @@ class Weapon
         return false;
     }
 
+//(int fill, String str, int pos, String border, boolean newline)
+    public String PrettyPrint(String border){
+       return 
+       Pretty.UI(64, "Name: " + this.weaponName, 3, border, true) + 
+       Pretty.UI(64, "Range: " + this.range, 3, border, true)  + 
+       Pretty.UI(64, "Damage: " + this.damage, 3, border, true)  + 
+       Pretty.UI(64, "Weight: " + this.weight, 3, border, true)  + 
+       Pretty.UI(64, "Cost: " + this.cost, 3, border, true);
+    }
+
+
+
     @Override
     public String toString(){
-        return (this.weaponName == null ) ? null : 
+        return (this.weaponName == null ) ? "" : 
         "Name: " + this.weaponName + 
         " || Range: " + this.range + 
         " || Damage: " + this.damage + 

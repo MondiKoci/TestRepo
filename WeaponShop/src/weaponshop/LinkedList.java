@@ -65,9 +65,12 @@ public class LinkedList {
 
     @Override
     public String toString(){
-        String s="Weapon Node: [";
+        String s= "";
         WeaponNode curr = head;
         while(curr != null){
+         
+            
+            
             s += (curr.next == null) ? " (" +curr.data + ")" : " (" +curr.data + "),";
             curr=curr.next;
         }

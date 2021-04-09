@@ -71,13 +71,13 @@ public class BackPack {
             return true;
         }
        
-       
-        public void printTable(){
-            System.out.println("Hash Table Contents");
-            for (int x=0;x<maxSize;x++){
-                System.out.println(x+"] "+table[x]);
+        @Override
+        public String toString(){
+            String output = "";
+            for (int i=0;  i< maxSize; i++){
+                output += table[i] + "\n";
             }
-            System.out.println("");
+            return output;
         }
     }
 
