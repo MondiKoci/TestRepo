@@ -20,5 +20,5 @@ class Weapon
             range = rang;
             weight = w;
             cost = c;
-        }        
+        }
     }
