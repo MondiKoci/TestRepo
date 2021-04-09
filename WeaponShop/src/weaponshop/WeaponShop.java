@@ -22,7 +22,7 @@ public class WeaponShop {
         scanner.nextLine();
     }
 
-    public static void addWeapon(Scanner sc) {
+    public static void addItem(Scanner sc) {
         String weaponName; int weaponRange;int weaponDamage;double weaponWeight;double weaponCost;
         int quantity;
         System.out.println("============= ADD WEAPONS TO THE SHOP =============");
@@ -161,7 +161,7 @@ public class WeaponShop {
         sc.nextLine();
         int choice = getInteger(sc, menu, 6);//!CHange to 6
         while(choice != 6){
-            if(choice == 1){addWeapon(sc);}
+            if(choice == 1){addItem(sc);}
             if(choice == 2){deleteItem();}
             if(choice == 3){buyItem(sc);}
             if(choice == 4){viewBackpack();}
