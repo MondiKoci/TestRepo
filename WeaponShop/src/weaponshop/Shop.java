@@ -37,11 +37,12 @@ class Shop {
         int startLoc = hashFunction(item.weaponName);
         int loc = startLoc;
         if(loc < 0)return false;
-        while(table[loc] != null && !table[loc].item.compareTo(item)){
+        while(table[loc] != null && table[loc].item != null){
             loc = (startLoc + count * count) % maxItems;
             count++;
         }
-        if(table[loc] == null){
+        //Check if locaiton is null or it contains a deleted (null) item
+        if(table[loc] == null || table[loc].item == null){
             table[loc] = new ShopItem(item, quantity);
             return true;
         }
@@ -74,7 +75,6 @@ class Shop {
     public boolean delete(String name){
         int loc = search(name);
         if(loc == -1) return false;
-        
         //Store an empty object
         table[loc] = new ShopItem();
         return true;

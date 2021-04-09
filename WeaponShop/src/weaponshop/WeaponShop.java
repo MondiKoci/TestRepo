@@ -55,7 +55,24 @@ public class WeaponShop {
     }
 
     // Anchor Logic
-    public static void deleteItem() {
+    public static void deleteItem(Scanner sc) {
+        String itemName;
+        System.out.println(Pretty.fill(64, "*"));
+        System.out.println(ShopManager.itemList());
+        System.out.println(Pretty.fill(64, "*"));
+        
+        System.out.print("Enter the NAME of the item you want to delete ('end' to exit): ");
+        itemName = sc.next();
+        
+        while(itemName.compareTo("end") != 0){
+            if(ShopManager.delete(itemName)){
+                System.out.println("Item deleted!");
+            }else{
+                System.out.println("Item was not found");
+            }
+            System.out.print("Enter the NAME of the item you want to delete ('end' to exit): ");
+            itemName = sc.next();
+        }
     }
 
     public static void buyItem(Scanner sc) {
@@ -202,7 +219,7 @@ public class WeaponShop {
         int choice = getInteger(sc, menu, 6);//!CHange to 6
         while(choice != 6){
             if(choice == 1){addItem(sc);}
-            if(choice == 2){deleteItem();}
+            if(choice == 2){deleteItem(sc);}
             if(choice == 3){buyItem(sc);}
             if(choice == 4){viewBackpack();}
             if(choice == 5){viewPlayer();}
