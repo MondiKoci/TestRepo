@@ -97,6 +97,7 @@ public class LinkedList {
     public String listPrint(int outerSize, String outerBorder, int innerSize, String innerBorder){
         String output= "";
         WeaponNode curr = head;
+        
         while(curr != null){
             output +=
             Pretty.UI(outerSize, 

@@ -75,7 +75,7 @@ public class WeaponShop {
                 System.out.print(ShopManager);
                 promptEnterKey();
             }
-            if(choice == 2){}
+            if(choice == 2){purchaseWeapon();}
             choice = getInteger(sc, buyMenu(), 3);
         }
     }
@@ -87,6 +87,10 @@ public class WeaponShop {
     
     public static void purchaseWeapon() {
         
+        
+        System.out.print(purchaseMenu());
+
+        promptEnterKey();
     }
 
     public static void viewPlayer() {
@@ -139,6 +143,16 @@ public class WeaponShop {
         }
         return sc.nextDouble();
     }
+
+    //public static String getValidShopWeapon(Scanner sc, String message, String errorMsg){
+
+
+    //}
+
+
+
+
+
     // =================STRING MENUES======================
 
     // Main Menu
@@ -155,9 +169,28 @@ public class WeaponShop {
 
     public static String buyMenu() {
         return "\n" + Pretty.UI(64, "~ Buy From Shop ~") + 
-        "\n1: View Shop Showroom\n" + 
+        "\n1: View Shop Show Room\n" + 
         "2: Purchase Weapon\n"+ 
         "3: Go Back\n";
+    }
+
+    public static String purchaseMenu(){
+        return  
+        Pretty.fill(64, "*") + "\n" +
+        Pretty.UI(64, "", 3, "%", true) + 
+        Pretty.UI(64, "        Shop Inventory:", 1, "%", true) +
+        ShopManager.itemList() +
+        Pretty.UI(64, "", 3, "%", true) + 
+        Pretty.UI(64, "", 3, "%", true) +
+        Pretty.UI(64, "         " + player.name + "'s Backpack:", 1, "%", true) +
+        player.backpack.itemList() +
+        Pretty.UI(64, "Backpack Total Items: " + player.backpack.getNumItems() + " / " + player.backpack.getMaxSize() + "              ", 2, "%", true) +
+        Pretty.UI(64, "Backpack Total Weight: " + player.backpack.getWeight()+ " / " + player.backpack.getMaxWeight() + "              ", 2, "%", true) +
+        Pretty.UI(64, "", 3, "%", true) +
+        Pretty.UI(64, "", 3, "%", true) +
+        Pretty.UI(64, " " + player.name + "'s Coin(s): $" + player.money, 1, "%", true) +
+        Pretty.fill(64, "*") + "\n" +
+        "Please enter the name of a Item You want to purchase (or 'end' to go back):" + "\n";
     }
 
     
@@ -166,6 +199,7 @@ public class WeaponShop {
 
 
     public static void runGame(Scanner sc) {
+        REMOVEME();//!Remove when submission
         String menu = mainMenu();
         sc.nextLine();
         int choice = getInteger(sc, menu, 6);//!CHange to 6
@@ -175,7 +209,7 @@ public class WeaponShop {
             if(choice == 3){buyItem(sc);}
             if(choice == 4){viewBackpack();}
             if(choice == 5){viewPlayer();}
-            if(choice == 7){REMOVEME();}//!REMOVE
+           
 
             choice = getInteger(sc, menu, 6);
         }

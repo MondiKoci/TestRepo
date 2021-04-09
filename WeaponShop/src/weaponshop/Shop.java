@@ -126,13 +126,21 @@ class Shop {
 
     public String itemList(){
         String output = Pretty.UI(64, Pretty.fill(45, "-"), 3, "%", true);
+        output +=
+                Pretty.UI(64, 
+                    Pretty.UI(15," Name", 1, "|", false) +
+                    Pretty.UI(15,"Price", 3, "", false) +
+                    Pretty.UI(15,"Stock ", 2, "|", false), 
+                3, "%", true) +
+                Pretty.UI(64, Pretty.fill(45, "-"), 3, "%", true);
+
         for (int i=0;  i< maxItems; i++){
             if(table[i] != null){
                 output +=
                 Pretty.UI(64, 
                     Pretty.UI(15," " +  table[i].item.weaponName, 1, "|", false) +
                     Pretty.UI(15,"$"+ table[i].item.cost, 3, "", false) +
-                    Pretty.UI(15,"Stock: "+ table[i].numberInStock + " ", 2, "|", false), 
+                    Pretty.UI(15,"x"+ table[i].numberInStock + " ", 2, "|", false), 
                 3, "%", true);
             
             }

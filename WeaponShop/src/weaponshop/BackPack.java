@@ -7,11 +7,11 @@ package weaponshop;
 public class BackPack {
   
         private LinkedList[] table;
-        public double weight;
+        private double weight;
         private int numItems;
         private boolean virtualSuccess;
-        int maxSize = 30;
-        double maxWeight = 90;
+        private int maxSize = 30;
+        private double maxWeight = 90;
     
     
         public BackPack(){
@@ -97,24 +97,57 @@ public class BackPack {
 
         }
 
+
         public String itemList(){
-            String output = Pretty.UI(64, Pretty.fill(34, "-"), 3, "%", true);
+            return itemList(64, "%", 34, "|","-");
+        }
+
+        public String itemList(int outerSize, String outerBorder, int innerSize, String innerBorder, String underline){
+            String output = Pretty.UI(outerSize, Pretty.fill(innerSize, underline), 3, outerBorder, true) +
+            Pretty.UI(outerSize, 
+                Pretty.UI(innerSize/2," Name", 1, "|", false) +
+                Pretty.UI(innerSize/2,  "Weight ", 2, "|", false), 
+            3, outerBorder, true) +
+            Pretty.UI(outerSize, Pretty.fill(innerSize, underline), 3, outerBorder, true);
             int count = 0;
             for (int i=0;  i< maxSize; i++){
                 if(table[i] != null){
-                    output += table[i].listPrint(64, "%", 34, "|");
+                    output += table[i].listPrint(outerSize, outerBorder, innerSize, innerBorder);
                     count++;
                 }
             }
             
             if(count == 0)
-                output+= Pretty.UI(64, Pretty.UI(34, "Empty", 3, "|", false), 3, "%", true);
+                output+= Pretty.UI(outerSize, Pretty.UI(innerSize, "Empty", 3, innerBorder, false), 3, outerBorder, true);
             
                 return output + 
-            Pretty.UI(64, Pretty.fill(34, "-"), 3, "%", true);
+            Pretty.UI(outerSize, Pretty.fill(innerSize, underline), 3, outerBorder, true);
         }
 
-        
+        public double getWeight() {
+            return weight;
+        }
+
+        public void setWeight(double weight) {
+            this.weight = weight;
+        }
+
+        public int getNumItems() {
+            return numItems;
+        }
+
+        public void setNumItems(int numItems) {
+            this.numItems = numItems;
+        }
+
+        public int getMaxSize() {
+            return maxSize;
+        }
+
+        public double getMaxWeight() {
+            return maxWeight;
+        }
+      
 
     }
 
