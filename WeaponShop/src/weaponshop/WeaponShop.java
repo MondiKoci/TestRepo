@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class WeaponShop {
+    static Shop ShopManager;
     
 /**
  *
@@ -15,16 +16,42 @@ public class WeaponShop {
  */
 
     public static  void promptEnterKey(){
-        System.out.println("Press \"ENTER\" to go back...");
+        System.out.println("\n\nPress \"ENTER\" to go back...");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
     }
 
-    public static void addItems(){
-        System.out.println("HELLO");
+    public static void addItems(Scanner sc)
+    {
+        int stock;
+        System.out.println("***********WELCOME TO THE WEAPON ADDING MENU*********");
+        String weaponName; int weaponRange; int weaponDamage; double weaponWeight; double weaponCost;
+        int quantity;
+        System.out.print("Please enter the NAME of the Weapon ('end' to quit):");
+        weaponName=sc.next();
 
-        promptEnterKey();
+        //Check if weapon exists in the shop
+        int position = ShopManager.search(weaponName);
+        if(position != -1){
+            System.out.println("\nWeapon with name " + "\"" + ShopManager.get(weaponName).item.weaponName +"\"" + " already in the inventory\n");
+            stock = getInteger(sc, "Please enter the quantity to be added in stock: ");
+            ShopManager.updateInventory(position, stock);
+            addItems(sc);
+        }
+    
+    while (weaponName.compareTo("end") != 0)
+    {
+        weaponRange= getInteger(sc,"Please enter the Range of the Weapon (0-10):"); 
+        weaponDamage=getInteger(sc,"Please enter the Damage of the Weapon:"); 
+        weaponWeight= getDouble(sc,"Please enter the Weight of the Weapon (in pounds):");
+        weaponCost=getDouble(sc,"Please enter the Cost of the Weapon:");
+        Weapon w = new Weapon(weaponName, weaponRange, weaponDamage, weaponWeight, weaponCost);
+        quantity=getInteger(sc,"Please enter the quantity in stock:"); 
+        ShopManager.put(w,quantity);
+        System.out.print("Please enter the NAME of another Weapon ('end' to quit):");
+        weaponName = sc.next();
     }
+}
     public static void deleteItem(){}
     public static void buyItem(){}
     public static void viewBackpack(){}
@@ -98,7 +125,7 @@ public class WeaponShop {
         int choice = getInteger(sc, menu, 6);
 
         while(choice != 6){
-            if(choice == 1){addItems();}
+            if(choice == 1){addItems(sc );}
             if(choice == 2){deleteItem();}
             if(choice == 3){buyItem();}
             if(choice == 4){viewBackpack();}
@@ -111,6 +138,7 @@ public class WeaponShop {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        ShopManager = new Shop();
         String pname;
         System.out.println("Please enter Player name:");
         pname=sc.next();
