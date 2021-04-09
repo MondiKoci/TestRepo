@@ -99,12 +99,18 @@ public class BackPack {
 
         public String itemList(){
             String output = Pretty.UI(64, Pretty.fill(34, "-"), 3, "%", true);
+            int count = 0;
             for (int i=0;  i< maxSize; i++){
                 if(table[i] != null){
                     output += table[i].listPrint(64, "%", 34, "|");
+                    count++;
                 }
             }
-            return output + 
+            
+            if(count == 0)
+                output+= Pretty.UI(64, Pretty.UI(34, "Empty", 3, "|", false), 3, "%", true);
+            
+                return output + 
             Pretty.UI(64, Pretty.fill(34, "-"), 3, "%", true);
         }
 

@@ -80,8 +80,7 @@ public class LinkedList {
                 Pretty.fill(innerSize, innerBorder),
             3, outerBorder, true);
 
-          
-
+        
            // output += curr.data.PrettyPrint(innerSize, innerBorder) + "\n";
             //output += Pretty.fill(innerSize, innerBorder) + "\n";
 
