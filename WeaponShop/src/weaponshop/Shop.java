@@ -91,6 +91,7 @@ class Shop {
         }
         return -2; //Item out of stock
     }
+    
     public Weapon getItem(int index){
         return table[index].item;
     }
