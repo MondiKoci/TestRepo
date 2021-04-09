@@ -40,15 +40,15 @@ class Shop {
             loc = (startLoc + count * count) % maxItems;
             count++;
         }
-        if(table[loc].item.compareTo(item)){
-            table[loc].numberInStock++;
+        if(table[loc] == null){
+            table[loc] = new ShopItem(item, quantity);
             return true;
         }
-        table[loc] = new ShopItem(item, quantity);
+        table[loc].numberInStock++;
         return true;
     }
     
-    //Update Inventory?
+    //Update Inventory
     public void updateInventory(int position, int newStock){
         table[position].numberInStock = newStock;
     }
