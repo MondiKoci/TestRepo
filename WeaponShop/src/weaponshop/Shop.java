@@ -36,6 +36,7 @@ class Shop {
         int count = 1;
         int startLoc = hashFunction(item.weaponName);
         int loc = startLoc;
+        if(loc < 0)return false;
         while(table[loc] != null && !table[loc].item.compareTo(item)){
             loc = (startLoc + count * count) % maxItems;
             count++;
