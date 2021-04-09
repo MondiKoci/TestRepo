@@ -66,7 +66,7 @@ public class WeaponShop {
                 System.out.print(ShopManager);
                 promptEnterKey();
             }
-            if(choice == 2){purchaseWeapon();}
+            if(choice == 2){purchaseWeapon(sc);}
             choice = getInteger(sc, buyMenu(), 3);
         }
     }
@@ -76,12 +76,11 @@ public class WeaponShop {
         promptEnterKey();
     }
     
-    public static void purchaseWeapon() {
+    public static void purchaseWeapon(Scanner sc) {
+        String input = getValidShopWeapon(sc, purchaseMenu());
         
-        
-        System.out.print(purchaseMenu());
 
-        promptEnterKey();
+
     }
 
     public static void viewPlayer() {
@@ -135,10 +134,18 @@ public class WeaponShop {
         return sc.nextDouble();
     }
 
-    //public static String getValidShopWeapon(Scanner sc, String message, String errorMsg){
+    public static String getValidShopWeapon(Scanner sc, String message){
+        return getValidShopWeapon(sc,  message, "Please enter the name of a Item You want to purchase (or 'end' to go back):");
+    }
 
-
-    //}
+    public static String getValidShopWeapon(Scanner sc, String message, String errorMsg){
+        System.out.print(message);
+        System.out.print(errorMsg + "\n");
+        String name = sc.nextLine();
+        int result = ShopManager.search(name);
+        if(result == -1) return getValidShopWeapon(sc, message, "Item \"" + name +"\" Not found in shop please try again");
+        return name;
+    }
 
 
 
@@ -180,8 +187,7 @@ public class WeaponShop {
         Pretty.UI(64, "", 3, "%", true) +
         Pretty.UI(64, "", 3, "%", true) +
         Pretty.UI(64, " " + player.name + "'s Coin(s): $" + player.money, 1, "%", true) +
-        Pretty.fill(64, "*") + "\n" +
-        "Please enter the name of a Item You want to purchase (or 'end' to go back):" + "\n";
+        Pretty.fill(64, "*") + "\n";
     }
 
     

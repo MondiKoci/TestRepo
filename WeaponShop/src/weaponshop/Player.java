@@ -24,7 +24,7 @@ class Player
 
         public String buy(Weapon w)
         {
-            String resultMsg = virtualAdd(w);
+            String resultMsg = ";";// virtualAdd(w);
             if(virtualResult()){
                 backpack.add(w);
                 numItems++;
@@ -38,7 +38,7 @@ class Player
             return this.virtualSuccess; 
         }
         
-        private String virtualAdd(Weapon wep){
+        private String virtualBuy(Weapon wep){
             if(wep.cost > this.money){ return "Weapon too expensive";}
             if(!backpack.hasSize()){ return "Backpack is full!";}
             if(!backpack.hasWeight(wep.weight)){ return "Backpack Overweight";}
