@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 public class WeaponShop {
     static Shop ShopManager;
+    static Player player;
     static int counter = 0;
     
 /**
@@ -56,7 +57,9 @@ public class WeaponShop {
         addWeapon(sc, counter);
     }
 
-    public static void deleteItem(){}
+    public static void deleteItem(){
+        
+    }
     public static void buyItem(){}
     public static void viewBackpack(){
         BackPack b = new BackPack();
@@ -151,11 +154,8 @@ public class WeaponShop {
         String pname;
         System.out.println("Please enter Player name:");
         pname=sc.next();
-        Player player = new Player(pname,45);
-        Shop shop = new Shop();
+        player = new Player(pname,45);
         runGame(sc);
-        player.printCharacter();
-
     }
     
 }
