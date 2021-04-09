@@ -39,7 +39,7 @@ public class WeaponShop {
         weaponName = sc.next();
         if (weaponName.compareTo("end") == 0) {
             counter = 0;
-            runGame(sc);
+            return;
         }
         int loc = ShopManager.search(weaponName);
         if (loc != -1) {
@@ -60,7 +60,7 @@ public class WeaponShop {
         System.out.println("Enter 'Y' to enter another weapon or 'N' to exit");
         String choice = sc.next();
         if(choice.compareTo("Y") == 0)addWeapon(sc, counter);
-        else{runGame(sc);}
+        else{return;}
     }
 
     // Anchor Logic
