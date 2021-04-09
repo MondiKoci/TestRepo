@@ -58,6 +58,8 @@ class Shop {
         int count = 1;
             int startLoc = hashFunction(name);
             int loc = startLoc;
+            //check if location is less than 0
+            if(loc < 0){return -1;}
             while(table[loc] != null && table[loc].item.weaponName.compareTo(name) != 0){
                 loc = (startLoc + count * count) % maxItems;
                 count++;
@@ -78,10 +80,18 @@ class Shop {
     }
     
 
-    public ShopItem get(String key)
+    public int buy(String key)
     {
         int location = search(key); //gets location in table 
-        return location == -1 ? null : table[location];
+        if(location == -1) return -1; //Item does not exist
+        if(table[location].numberInStock > 0){
+            table[location].numberInStock--;
+            return location; // Item found return position
+        }
+        return -2; //Item out of stock
+    }
+    public Weapon getItem(int index){
+        return table[index].item;
     }
 
     public void printTable()
