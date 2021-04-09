@@ -61,10 +61,6 @@ public class WeaponShop {
     public static void viewBackpack(){}
     public static void viewPlayer(){}
 
-
-
-
-
     //============== VALIDATE USER INPUT ==================
     //Get integer input
     public static int getInteger(Scanner sc, String message, int max){
