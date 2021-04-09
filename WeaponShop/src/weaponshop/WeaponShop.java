@@ -39,7 +39,7 @@ public class WeaponShop {
         weaponName = sc.next();
         if (weaponName.compareTo("end") == 0) {
             counter = 0;
-            runGame(sc);
+            return;
         }
         int loc = ShopManager.search(weaponName);
         if (loc != -1) {
@@ -60,7 +60,7 @@ public class WeaponShop {
         System.out.println("Enter 'Y' to enter another weapon or 'N' to exit");
         String choice = sc.next();
         if(choice.compareTo("Y") == 0)addWeapon(sc, counter);
-        else{runGame(sc);}
+        else{return;}
     }
 
     // Anchor Logic
@@ -83,6 +83,10 @@ public class WeaponShop {
     public static void viewBackpack() {
         System.out.print(player.backpack);
         promptEnterKey();
+    }
+    
+    public static void purchaseWeapon() {
+        
     }
 
     public static void viewPlayer() {
@@ -152,10 +156,14 @@ public class WeaponShop {
     public static String buyMenu() {
         return "\n" + Pretty.UI(64, "~ Buy From Shop ~") + 
         "\n1: View Shop Showroom\n" + 
-        "2: Buy Item\n"+ 
+        "2: Purchase Weapon\n"+ 
         "3: Go Back\n";
-
     }
+
+    
+
+
+
 
     public static void runGame(Scanner sc) {
         String menu = mainMenu();
