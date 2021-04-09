@@ -83,6 +83,10 @@ public class WeaponShop {
         System.out.print(player.backpack);
         promptEnterKey();
     }
+    
+    public static void purchaseWeapon() {
+        
+    }
 
     public static void viewPlayer() {
     }
@@ -151,10 +155,14 @@ public class WeaponShop {
     public static String buyMenu() {
         return "\n" + Pretty.UI(64, "~ Buy From Shop ~") + 
         "\n1: View Shop Showroom\n" + 
-        "2: Buy Item\n"+ 
+        "2: Purchase Weapon\n"+ 
         "3: Go Back\n";
-
     }
+
+    
+
+
+
 
     public static void runGame(Scanner sc) {
         String menu = mainMenu();
