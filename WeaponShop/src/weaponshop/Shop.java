@@ -2,7 +2,7 @@ package weaponshop;
 
 /**
  *
- * @authors Max Grossman / Mondi Koci
+ * @authors Max Grossman / Mondi Koci / Frederic Knoestah
  */
 
 class Shop {
@@ -38,7 +38,7 @@ class Shop {
         int count = 1;
         int startLoc = hashFunction(item.weaponName);
         int loc = startLoc;
-        if(loc < 0)return false;
+        if(loc < 0 || loc > maxItems)return false; //if result is out of bounds
         while(table[loc] != null && table[loc].item != null){
             loc = (startLoc + count * count) % maxItems;
             count++;

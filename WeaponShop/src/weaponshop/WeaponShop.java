@@ -8,20 +8,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class WeaponShop {
-    static Shop ShopManager;
-    static Player player;
-
     /**
      *
-     * @authors Max Grossman / Mondi Koci
+     * @authors Max Grossman / Mondi Koci / Frederic Knoestah
      */
 
+    static Shop ShopManager;
+    static Player player;
+    
+    // Helper method
     public static void promptEnterKey() {
         System.out.println("\n\nPress \"ENTER\" to go back...");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
     }
 
+    //Add item to the shop
     public static void addItem() {
         Scanner sc = new Scanner(System.in);
         String weaponName; int weaponRange;int weaponDamage;double weaponWeight;double weaponCost;
@@ -55,7 +57,7 @@ public class WeaponShop {
         }  
     }
 
-    // Anchor Logic
+    // Delete Item from the shop
     public static void deleteItem() {
         Scanner sc = new Scanner(System.in);
         String itemName;
@@ -126,6 +128,7 @@ public class WeaponShop {
         promptEnterKey();
     }
 
+<<<<<<< HEAD
     public static void REMOVEME() {
         ShopManager.put(new Weapon("Axe", 2, 2, 3, 400), 5);
         ShopManager.put(new Weapon("Sword", 2, 2, 500, 4), 5);
@@ -133,9 +136,9 @@ public class WeaponShop {
         ShopManager.put(new Weapon("Knife", 2, 2, 3, 7), 5);
     }
 
+=======
+>>>>>>> c95ee02e9b6ebabbd61bd0ecd00d991aa346e2eb
     // ============== VALIDATE USER INPUT ==================
-    // Get integer input
-
     public static int getInteger(Scanner sc, String message, int max) {
         return getIntegerHelper(sc, message, max, "Please Enter a Input from the list above:");
     }
@@ -154,7 +157,6 @@ public class WeaponShop {
             return getIntegerHelper(sc, message, max, "Please select a choice from the menu above: ");
         }
     }
-
 
     public static int getInteger(Scanner sc, String message) {
         System.out.print(message);
@@ -189,12 +191,7 @@ public class WeaponShop {
         return name;
     }
 
-
-
-
-
     // =================STRING MENUES======================
-
     // Main Menu
     public static String mainMenu() {
         String s = "====WELCOME TO THE WORLD OF PEACECRAFT====\n";
@@ -206,7 +203,8 @@ public class WeaponShop {
         s += "6: exit\n";
         return s;
     }
-
+    
+    // Buy weapon menu
     public static String buyMenu() {
         return "\n" + Pretty.UI(64, "~ Buy From Shop ~") + 
         "\n1: View Shop Show Room\n" + 
@@ -257,10 +255,9 @@ public class WeaponShop {
 
 
     public static void runGame(Scanner sc) {
-        REMOVEME();
         String menu = mainMenu();
         sc.nextLine();
-        int choice = getInteger(sc, menu, 6);//!CHange to 6
+        int choice = getInteger(sc, menu, 6);
         while(choice != 6){
             if(choice == 1){addItem();}
             if(choice == 2){deleteItem();}
@@ -272,6 +269,7 @@ public class WeaponShop {
         }
     }
 
+    //MAIN
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ShopManager = new Shop();
@@ -280,8 +278,6 @@ public class WeaponShop {
         pname = sc.next();
         player = new Player(pname, 45);
         runGame(sc);
-        // player.printCharacter();
-
     }
 
 }

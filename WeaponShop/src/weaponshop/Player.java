@@ -3,7 +3,7 @@ package weaponshop;
 
 /**
  *
- * @authors Max Grossman / Mondi Koci
+ * @authors Max Grossman / Mondi Koci / Frederic Knoestah
  */
 class Player
     {
@@ -78,4 +78,3 @@ class Player
             System.out.println();
         }
     }
-

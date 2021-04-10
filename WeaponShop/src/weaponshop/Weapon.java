@@ -2,7 +2,7 @@ package weaponshop;
 
 /**
  *
- * @authors Max Grossman / Mondi Koci
+ * @authors Max Grossman / Mondi Koci / Frederic Knoestah
  */
 
 class Weapon
@@ -88,8 +88,6 @@ class Weapon
        Pretty.UI(innerSize, "Cost: " + this.cost, 3, innerBorder, false),
        3, outerBorder, true);
     }
-
-
 
     @Override
     public String toString(){

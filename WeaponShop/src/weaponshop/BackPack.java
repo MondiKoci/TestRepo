@@ -2,7 +2,7 @@ package weaponshop;
 
 /**
  *
- * @authors Max Grossman / Mondi Koci
+ * @authors Max Grossman / Mondi Koci / Frederic Knoestah
  */
 public class BackPack {
   
