@@ -49,7 +49,7 @@ public class BackPack {
                 this.table[loc] = new LinkedList();
             
             this.table[loc].addFront(wep);
-            this.virtualSuccess = false;
+            
             numItems++;
             weight += wep.weight;
             return true;

@@ -9,7 +9,7 @@ class Player
     {
         public String name;
         public BackPack backpack;
-        public boolean virtualSuccess;
+        private boolean virtualSuccess;
         public int numItems;
         public double money;
 
@@ -22,29 +22,31 @@ class Player
             backpack = new BackPack();
         }
 
-        public String buy(Weapon w)
+        public boolean buy(Weapon w)
         {
-            String resultMsg = ";";// virtualAdd(w);
-            if(virtualResult()){
-                backpack.add(w);
+            if(backpack.add(w)){
                 numItems++;
                 withdraw(w.cost);
+                return true;
             }
-            return resultMsg;
+            return false;
         }
 
-        private boolean virtualResult(){ 
-            this.virtualSuccess = false;
+        
+
+        public boolean virtualResult(){ 
             return this.virtualSuccess; 
         }
         
-        private String virtualBuy(Weapon wep){
-            if(wep.cost > this.money){ return "Weapon too expensive";}
+        public String virtualBuy(Weapon wep){
+            this.virtualSuccess = false;
+            if(wep.cost > this.money){ return "Weapon too expensive. Please try again";}
             if(!backpack.hasSize()){ return "Backpack is full!";}
-            if(!backpack.hasWeight(wep.weight)){ return "Backpack Overweight";}
+            if(!backpack.hasWeight(wep.weight)){ return  wep.weaponName + " will Overweigh Backpack! ("+wep.weight+"lbs)\nPlease try again";}
             this.virtualSuccess = true;
             return wep.weaponName + " has been added to Backpack.";
         }
+        
 
 
 

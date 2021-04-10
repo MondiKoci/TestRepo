@@ -85,7 +85,7 @@ public class WeaponShop {
                 System.out.print(ShopManager);
                 promptEnterKey();
             }
-            if(choice == 2){purchaseWeapon(sc);}
+            if(choice == 2){purchaseWeapon();}
             choice = getInteger(sc, buyMenu(), 3);
         }
     }
@@ -94,22 +94,42 @@ public class WeaponShop {
         System.out.print(player.backpack);
         promptEnterKey();
     }
+   
     
-    public static void purchaseWeapon(Scanner sc) {
-        String input = getValidShopWeapon(purchaseMenu());
-        if(input == null) return;
-        
+    public static void purchaseWeapon(){
+        purchaseWeapon("Please enter the name of a Item You want to purchase (or 'end' to go back):");
+    }
 
+    public static boolean purchaseWeapon(String errMsg) {
+       
 
+        String input = getValidShopWeapon(purchaseMenu(), errMsg);
+        if(input == null) return false;
+        String shopPurchaseAttempt = ShopManager.virtualBuy(input, player.money);
+        if(!ShopManager.virtualResult()) return purchaseWeapon(shopPurchaseAttempt + "  (or 'end' to go back):");
+        Weapon wep = ShopManager.getItem(ShopManager.search(input));
+        String backpackPurchaseAttempt = player.virtualBuy(wep);
+        if(!player.virtualResult()) return purchaseWeapon(backpackPurchaseAttempt + "  (or 'end' to go back):");
+        ShopManager.buy(input);
+        player.buy(wep);
+        return purchaseWeapon(shopPurchaseAttempt +", " +
+            backpackPurchaseAttempt + "\n" +
+            "Please enter the name of a Item You want to purchase (or 'end' to go back):"
+            );
     }
 
     public static void viewPlayer() {
+
+
+
+        System.out.print(player.backpack.itemList());
+        promptEnterKey();
     }
 
     public static void REMOVEME() {
-        ShopManager.put(new Weapon("Axe", 2, 2, 3, 4), 5);
-        ShopManager.put(new Weapon("Sword", 2, 2, 5, 4), 5);
-        ShopManager.put(new Weapon("Crossbow", 6, 2, 3, 4), 5);
+        ShopManager.put(new Weapon("Axe", 2, 2, 3, 400), 5);
+        ShopManager.put(new Weapon("Sword", 2, 2, 500, 4), 5);
+        ShopManager.put(new Weapon("Crossbow", 6, 89, 3, 4), 5);
         ShopManager.put(new Weapon("Knife", 2, 2, 3, 7), 5);
     }
 
@@ -154,9 +174,9 @@ public class WeaponShop {
         return sc.nextDouble();
     }
 
-    public static String getValidShopWeapon(String message){
+    public static String getValidShopWeapon(String message, String errorMsg){
         Scanner sc = new Scanner(System.in);
-        return getValidShopWeapon(sc, message, "Please enter the name of a Item You want to purchase (or 'end' to go back):");
+        return getValidShopWeapon(sc, message, errorMsg);
     }
 
     public static String getValidShopWeapon(Scanner sc, String message, String errorMsg){
@@ -165,7 +185,7 @@ public class WeaponShop {
         String name = sc.nextLine();
         if(name.compareTo("end") == 0) { return null; }
         int result = ShopManager.search(name);
-        if(result == -1) return getValidShopWeapon(sc, message, "Item \"" + name +"\" Not found in shop please try again");
+        if(result == -1) return getValidShopWeapon(sc, message, "Item \"" + name +"\" Not found in shop please try again (or 'end' to go back):");
         return name;
     }
 
@@ -195,6 +215,25 @@ public class WeaponShop {
     }
 
     public static String purchaseMenu(){
+        return  
+        Pretty.fill(64, "*") + "\n" +
+        Pretty.UI(64, "", 3, "%", true) + 
+        Pretty.UI(64, "        Shop Inventory:", 1, "%", true) +
+        ShopManager.itemList() +
+        Pretty.UI(64, "", 3, "%", true) + 
+        Pretty.UI(64, "", 3, "%", true) +
+        Pretty.UI(64, "         " + player.name + "'s Backpack:", 1, "%", true) +
+        player.backpack.itemList() +
+        Pretty.UI(64, "Backpack Total Items: " + player.backpack.getNumItems() + " / " + player.backpack.getMaxSize() + "              ", 2, "%", true) +
+        Pretty.UI(64, "Backpack Total Weight: " + player.backpack.getWeight()+ " / " + player.backpack.getMaxWeight() + "              ", 2, "%", true) +
+        Pretty.UI(64, "", 3, "%", true) +
+        Pretty.UI(64, "", 3, "%", true) +
+        Pretty.UI(64, " " + player.name + "'s Coin(s): $" + player.money, 1, "%", true) +
+        Pretty.fill(64, "*") + "\n";
+    }
+
+
+    public static String viewPlayerString(){
         return  
         Pretty.fill(64, "*") + "\n" +
         Pretty.UI(64, "", 3, "%", true) + 

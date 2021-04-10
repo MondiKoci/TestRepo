@@ -11,9 +11,11 @@ class Shop {
     private int numItems;      // records number of items in the list
     private ShopItem[] table; //hashtable itself
     private double loadFactor = 0.80;
+    private boolean virtualSuccess;
 
     public Shop()
     {
+        virtualSuccess = false;
         maxItems = 97;
         numItems = 0;
         table = new ShopItem[maxItems];
@@ -91,6 +93,29 @@ class Shop {
         }
         return -2; //Item out of stock
     }
+
+    public String virtualBuy(String key, double money)
+    {
+        this.virtualSuccess = false;
+        int location = search(key); //gets location in table 
+        if(location == -1) return "Weapon "+key+" does not exist! Please try again"; //Item does not exist
+        if(table[location].numberInStock <= 0) return "Weapon "+key+" out of stock. Please try again";
+        if(table[location].item.cost > money) return "You don't have enough coins purchase a "+key+"! Please try again";
+        this.virtualSuccess = true;
+        return "Item Purchased!";
+    }
+
+    public boolean virtualResult(){
+        return this.virtualSuccess;
+    }
+
+    
+
+    
+
+
+
+
     
     public Weapon getItem(int index){
         return table[index].item;
