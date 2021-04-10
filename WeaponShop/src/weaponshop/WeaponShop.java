@@ -66,7 +66,7 @@ public class WeaponShop {
         System.out.println(Pretty.fill(64, "*"));
         
         System.out.print("Enter the NAME of the item you want to delete ('end' to exit): ");
-        itemName = sc.next();
+        itemName  = sc.next();
         
         while(itemName.compareTo("end") != 0){
             if(ShopManager.delete(itemName)){
@@ -87,7 +87,7 @@ public class WeaponShop {
                 System.out.print(ShopManager);
                 promptEnterKey();
             }
-            if(choice == 2){purchaseWeapon();}
+            if(choice == 2){purchaseWeapon(sc);}
             choice = getInteger(sc, buyMenu(), 3);
         }
     }
@@ -97,12 +97,12 @@ public class WeaponShop {
         promptEnterKey();
     }
     
-    public static void purchaseWeapon() {
+    public static void purchaseWeapon(Scanner sc) {
+        String input = getValidShopWeapon(purchaseMenu());
+        if(input == null) return;
         
-        
-        System.out.print(purchaseMenu());
 
-        promptEnterKey();
+
     }
 
     public static void viewPlayer() {
@@ -146,6 +146,21 @@ public class WeaponShop {
         return sc.nextDouble();
     }
 
+    public static String getValidShopWeapon(String message){
+        Scanner sc = new Scanner(System.in);
+        return getValidShopWeapon(sc, message, "Please enter the name of a Item You want to purchase (or 'end' to go back):");
+    }
+
+    public static String getValidShopWeapon(Scanner sc, String message, String errorMsg){
+        System.out.print(message);
+        System.out.print(errorMsg + "\n");
+        String name = sc.nextLine();
+        if(name.compareTo("end") == 0) { return null; }
+        int result = ShopManager.search(name);
+        if(result == -1) return getValidShopWeapon(sc, message, "Item \"" + name +"\" Not found in shop please try again");
+        return name;
+    }
+
     // =================STRING MENUES======================
     // Main Menu
     public static String mainMenu() {
@@ -182,8 +197,7 @@ public class WeaponShop {
         Pretty.UI(64, "", 3, "%", true) +
         Pretty.UI(64, "", 3, "%", true) +
         Pretty.UI(64, " " + player.name + "'s Coin(s): $" + player.money, 1, "%", true) +
-        Pretty.fill(64, "*") + "\n" +
-        "Please enter the name of a Item You want to purchase (or 'end' to go back):" + "\n";
+        Pretty.fill(64, "*") + "\n";
     }
 
     //Selection Menu
