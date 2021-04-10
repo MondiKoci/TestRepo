@@ -77,4 +77,23 @@ class Player
             }
             System.out.println();
         }
+
+
+        @Override
+        public String toString(){
+            return
+            Pretty.fill(64,  "-") + "\n" +
+            Pretty.UI(64, name, 3, "|", true) +
+            Pretty.fill(64,  "-") + "\n" +
+            Pretty.UI(64, "", 3, "|", true) +
+            Pretty.UI(64, "         " + name + "'s Backpack:", 1, "|", true) +
+            backpack.itemList(64, "|", 34, "|","-") +
+            Pretty.UI(64, "Backpack Total Items: " + backpack.getNumItems() + " / " + backpack.getMaxSize() + "              ", 2, "|", true) +
+            Pretty.UI(64, "Backpack Total Weight: " + backpack.getWeight()+ " / " + backpack.getMaxWeight() + "              ", 2, "|", true) +
+            Pretty.UI(64, "", 3, "|", true) +
+            Pretty.UI(64, "", 3, "|", true) +
+            Pretty.UI(64, " " + name + "'s Coin(s): $" + money, 1, "|", true) +
+            Pretty.UI(64, "", 3, "|", true) +
+            Pretty.fill(64, "-") + "\n";
+        }
     }

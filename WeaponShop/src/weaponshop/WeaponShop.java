@@ -121,10 +121,7 @@ public class WeaponShop {
     }
 
     public static void viewPlayer() {
-
-
-
-        System.out.print(player.backpack.itemList());
+        System.out.print(player);
         promptEnterKey();
     }
 
@@ -224,29 +221,10 @@ public class WeaponShop {
         Pretty.UI(64, "", 3, "%", true) +
         Pretty.UI(64, "", 3, "%", true) +
         Pretty.UI(64, " " + player.name + "'s Coin(s): $" + player.money, 1, "%", true) +
+        Pretty.UI(64, "", 3, "%", true) +
         Pretty.fill(64, "*") + "\n";
     }
 
-
-    public static String viewPlayerString(){
-        return  
-        Pretty.fill(64, "*") + "\n" +
-        Pretty.UI(64, "", 3, "%", true) + 
-        Pretty.UI(64, "        Shop Inventory:", 1, "%", true) +
-        ShopManager.itemList() +
-        Pretty.UI(64, "", 3, "%", true) + 
-        Pretty.UI(64, "", 3, "%", true) +
-        Pretty.UI(64, "         " + player.name + "'s Backpack:", 1, "%", true) +
-        player.backpack.itemList() +
-        Pretty.UI(64, "Backpack Total Items: " + player.backpack.getNumItems() + " / " + player.backpack.getMaxSize() + "              ", 2, "%", true) +
-        Pretty.UI(64, "Backpack Total Weight: " + player.backpack.getWeight()+ " / " + player.backpack.getMaxWeight() + "              ", 2, "%", true) +
-        Pretty.UI(64, "", 3, "%", true) +
-        Pretty.UI(64, "", 3, "%", true) +
-        Pretty.UI(64, " " + player.name + "'s Coin(s): $" + player.money, 1, "%", true) +
-        Pretty.fill(64, "*") + "\n";
-    }
-
-    
 
 
 
