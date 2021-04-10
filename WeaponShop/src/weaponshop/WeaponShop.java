@@ -128,7 +128,6 @@ public class WeaponShop {
         promptEnterKey();
     }
 
-<<<<<<< HEAD
     public static void REMOVEME() {
         ShopManager.put(new Weapon("Axe", 2, 2, 3, 400), 5);
         ShopManager.put(new Weapon("Sword", 2, 2, 500, 4), 5);
@@ -136,8 +135,6 @@ public class WeaponShop {
         ShopManager.put(new Weapon("Knife", 2, 2, 3, 7), 5);
     }
 
-=======
->>>>>>> c95ee02e9b6ebabbd61bd0ecd00d991aa346e2eb
     // ============== VALIDATE USER INPUT ==================
     public static int getInteger(Scanner sc, String message, int max) {
         return getIntegerHelper(sc, message, max, "Please Enter a Input from the list above:");
